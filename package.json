@@ -1,0 +1,35 @@
+{
+  "name": "fullcrazy",
+  "version": "1.0.0",
+  "description": "Proyecto formativo hecho en Node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorge10556/FullCrazy.git"
+  },
+  "keywords": [
+    "ADSO",
+    "Sena",
+    "Proyecto",
+    "Formacion",
+    "Node"
+  ],
+  "author": "jorge10556 , simon2025-mogo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jorge10556/FullCrazy/issues"
+  },
+  "homepage": "https://github.com/jorge10556/FullCrazy#readme",
+  "dependencies": {
+    "-": "^0.0.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.13.0",
+    "nodemon": "^3.1.9"
+  }
+}
