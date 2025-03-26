@@ -1,6 +1,6 @@
 const mongoose = require("../config/database");
 
-const schema_carrito = new mongoose.Schema({
+const SchemaCarrito = new mongoose.Schema({
     total: {
         type: Number,
         required: [true, "es obligatorio"]
@@ -15,5 +15,5 @@ const schema_carrito = new mongoose.Schema({
     },
 }, { versionKey: false });
 
-const carrito = mongoose.model("carrito", schema_carrito);
+const carrito = mongoose.model("carrito", SchemaCarrito);
 module.exports = carrito;
