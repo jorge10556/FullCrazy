@@ -1,20 +1,15 @@
-
-// exports.crear = async (req,res)=>{
-//     let nuevo_carrito = new modelo_carrito({
-//         "total": req.body.total,
-//         "cantidad": req.body.cantidad,
-//         "fecha": req.body.fecha,
-
-//     });
-//     res.json(await nuevo_carrito.save());
-//     if (nuevo_carrito)
-//         res.status(200).json({"mensaje": "carrito agregado"})
-//     else
-//         res.status(404).json({"mensaje": "carrito no agregado"})
-// };
+const modelo_carrito = require('../models/carrito.model');
 
 
-const modelo_carrito = require('../models/carrito.model'); 
+exports.obtener_todos = async (req, res) => {
+    try {
+        let carritos = await modelo_carrito.find();
+        res.status(200).json(carritos);
+    } catch (error) {
+        res.status(500).json({ mensaje: "Error al obtener carritos", error });
+    }
+};
+
 
 exports.crear = async (req, res) => {
     try {
@@ -32,11 +27,23 @@ exports.crear = async (req, res) => {
 };
 
 
-exports.obtener_todos = async (req, res) => {
+
+exports.actualizar = async (req, res) => {
     try {
-        let carritos = await modelo_carrito.find(); 
-        res.status(200).json(carritos);
+        const carrito_editado = {
+            total: req.body.total,
+            cantidad: req.body.cantidad,
+            fecha: req.body.fecha,
+        };
+
+        let actualizacion = await modelo_carrito.findByIdAndUpdate(req.params.id, carrito_editado, { new: true });
+
+        if (actualizacion) {
+            res.status(200).json({ mensaje: "Carrito actualizado correctamente", carrito: actualizacion });
+        } else {
+            res.status(404).json({ mensaje: "Carrito no encontrado" });
+        }
     } catch (error) {
-        res.status(500).json({ mensaje: "Error al obtener carritos", error });
+        res.status(500).json({ mensaje: "Error al actualizar el carrito", error });
     }
 };

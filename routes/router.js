@@ -3,11 +3,12 @@ const router = exp.Router();
 const modelo_carrito = require('../src/controller/carrito.controller');
 
 
-router.get('/carrito', modelo_carrito.obtener_todos);
-router.post('/carrito', modelo_carrito.crear)
+router.get('/carritos', modelo_carrito.obtener_todos);
+router.post('/carritos_agregar', modelo_carrito.crear);
+router.put('/carritos/:id', modelo_carrito.actualizar);  // Usamos PUT para actualizar
 
 
-router.get('/', (req, res) => {
+router.get('/inicio', (req, res) => {
     res.send("Bienvenido a la API de FullCrazy");
 });
 
