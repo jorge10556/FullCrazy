@@ -31,6 +31,7 @@ exports.crear = async (req, res) => {
 exports.actualizar = async (req, res) => {
     try {
         const carrito_editado = {
+            _id: req.params.id,
             total: req.body.total,
             cantidad: req.body.cantidad,
             fecha: req.body.fecha,
@@ -45,5 +46,23 @@ exports.actualizar = async (req, res) => {
         }
     } catch (error) {
         res.status(500).json({ mensaje: "Error al actualizar el carrito", error });
+    }
+};
+
+
+
+exports.eliminar = async (req, res) => {
+    try {
+        const id = req.params.id;
+
+        let eliminacion = await modelo_carrito.findByIdAndDelete(id);
+
+        if (eliminacion) {
+            res.status(200).json({ mensaje: "Carrito eliminado correctamente", carrito: eliminacion });
+        } else {
+            res.status(404).json({ mensaje: "Carrito no encontrado" });
+        }
+    } catch (error) {
+        res.status(500).json({ mensaje: "Error al eliminar el carrito", error });
     }
 };
